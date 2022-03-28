@@ -97,7 +97,7 @@ impl Error {
 }
 
 cfg_if! {
-    if #[cfg(unix)] {
+    if #[cfg(all(not(target_env = "sgx"), unix))] {
         fn os_err(errno: i32, buf: &mut [u8]) -> Option<&str> {
             let buf_ptr = buf.as_mut_ptr() as *mut libc::c_char;
             if unsafe { libc::strerror_r(errno, buf_ptr, buf.len()) } != 0 {

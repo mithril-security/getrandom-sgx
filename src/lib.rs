@@ -177,6 +177,8 @@ cfg_if! {
                  target_os = "redox"))] {
         mod util_libc;
         #[path = "use_file.rs"] mod imp;
+    } else if #[cfg(target_env = "sgx")] {
+        #[path = "sgx.rs"] mod imp;
     } else if #[cfg(any(target_os = "android", target_os = "linux"))] {
         mod util_libc;
         mod use_file;
