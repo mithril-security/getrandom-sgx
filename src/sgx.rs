@@ -12,6 +12,6 @@ use crate::Error;
 extern crate sgx_trts;
 
 pub fn getrandom_inner(dest: &mut [u8]) -> Result<(), Error> {
-    sgx_trts::trts::rsgx_read_rand(dest).expect("cannot get random");
+    sgx_trts::rand::rand(dest).expect("cannot get random");
     Ok(())
 }
